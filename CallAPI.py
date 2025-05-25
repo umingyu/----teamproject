@@ -2,7 +2,8 @@ import requests
 import UI
 
 a = UI.get_input()  # UI 모듈에서 사용자 입력 받기
-
+c = 0 
+b = 0
 def to_float(value):
     try:
         return float(value)
@@ -10,6 +11,7 @@ def to_float(value):
         return None
 
 def main():
+    global  c, b
     url = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty"
 
     params = {
@@ -77,21 +79,24 @@ def main():
         avg_pm25_24 = sum_pm25_24 / count_pm25_24 if count_pm25_24 > 0 else None
 
         if 0<avg_pm10<30:
-            print("오늘의",a,"의 미세먼지 농도는 좋음입니다.")
+             c = 1
         elif 30<avg_pm10<80:
-            print("오늘의",a,"의 미세먼지 농도는 보통입니다.")
+             c = 2
         elif 80<avg_pm10<150:
-            print("오늘의",a,"의 미세먼지 농도는 나쁨입니다.")
+             c = 3
         elif 150<avg_pm10:
-            print("오늘의",a,"의 미세먼지 농도는 매우 나쁨입니다.") 
+             c = 4
         
         if 0<avg_pm25<15:
-            print("오늘의",a,"의 초미세먼지 농도는 좋음입니다.")
+             b = 1
         elif 15<avg_pm25<35:    
-            print("오늘의",a,"의 초미세먼지 농도는 보통입니다.")
+             b = 2
         elif 35<avg_pm25<75:
-            print("오늘의",a,"의 초미세먼지 농도는 나쁨입니다.")
+             b = 3
         elif 75<avg_pm25:
-            print("오늘의",a,"의 초미세먼지 농도는 매우 나쁨입니다.")
+             b = 4
     else:
         print(f"API 요청 실패 (상태 코드: {response.status_code})")
+    
+    return c, b
+

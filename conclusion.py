@@ -73,7 +73,7 @@ def show_image():
             resample_filter = Image_k.LANCZOS 
         resized_image = image2.resize((desired_width, desired_height), resample_filter)
         
-        label2 = Label(window, text="오늘의 미세먼지는 보통통입니다")
+        label2 = Label(window, text="오늘의 미세먼지는 보통입니다")
         label2.pack(side="top", pady=20)
         photo = ImageTk.PhotoImage(resized_image)
 
@@ -90,7 +90,7 @@ def show_image():
             resample_filter = Image_k.LANCZOS 
         resized_image = image3.resize((desired_width, desired_height), resample_filter)
         
-        label2 = Label(window, text="오늘의 미세먼지는 나쁨쁨입니다")
+        label2 = Label(window, text="오늘의 미세먼지는 나쁨입니다")
         label2.pack(side="top", pady=20)
         photo = ImageTk.PhotoImage(resized_image)
 
@@ -107,7 +107,7 @@ def show_image():
             resample_filter = Image_k.LANCZOS 
         resized_image = image4.resize((desired_width, desired_height), resample_filter)
         
-        label2 = Label(window, text="오늘의 미세먼지는 좋음입니다")
+        label2 = Label(window, text="오늘의 미세먼지는 매우나쁨입니다")
         label2.pack(side="top", pady=20)
         photo = ImageTk.PhotoImage(resized_image)
 

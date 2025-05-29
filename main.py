@@ -1,11 +1,11 @@
 import UI
 import CallAPI
-import conclusion
+import test
 
 
 
 if __name__ == "__main__":
     CallAPI.main()
-    conclusion.show_image()
+    test.show_image()
 
 

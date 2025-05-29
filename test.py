@@ -5,7 +5,7 @@ from PIL import ImageTk
 import CallAPI
 import random
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
+IMG_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def show_image():
     try:
@@ -16,7 +16,7 @@ def show_image():
             window.title("미세먼지 측정기")
             window.geometry("700x500")
 
-        img_path_good = [os.path.join(script_dir,"images" ,fname) for fname in [
+        img_path_good = [os.path.join(IMG_DIR,"images" ,fname) for fname in [
             "KakaoTalk_20250525_094734829_03.jpg",
             "KakaoTalk_20250525_094734829_06.jpg",
             "KakaoTalk_20250525_094734829_13.jpg",
@@ -25,14 +25,14 @@ def show_image():
             "KakaoTalk_20250525_094734829_20.jpg",
         ]]
 
-        img_path_soso = [os.path.join(script_dir,"images", fname) for fname in [
+        img_path_soso = [os.path.join(IMG_DIR,"images", fname) for fname in [
             "KakaoTalk_20250525_094734829_02.jpg",
             "KakaoTalk_20250525_094734829_08.jpg",
             "KakaoTalk_20250525_094734829_11.jpg",
             "KakaoTalk_20250525_094734829_18.jpg",
         ]]
 
-        img_path_bad = [os.path.join(script_dir,"images", fname) for fname in [
+        img_path_bad = [os.path.join(IMG_DIR,"images", fname) for fname in [
             "KakaoTalk_20250525_094734829_01.jpg",
             "KakaoTalk_20250525_094734829_04.jpg",
             "KakaoTalk_20250525_094734829_07.jpg",
@@ -40,7 +40,7 @@ def show_image():
             "KakaoTalk_20250525_094734829_16.jpg",
         ]]
 
-        img_path_too_bad = [os.path.join(script_dir,"images", fname) for fname in [
+        img_path_too_bad = [os.path.join(IMG_DIR,"images", fname) for fname in [
             "KakaoTalk_20250525_094734829_05.jpg",
             "KakaoTalk_20250525_094734829_10.jpg",
             "KakaoTalk_20250525_094734829_12.jpg",

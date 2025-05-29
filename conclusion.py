@@ -1,119 +1,103 @@
+import os
 from tkinter import *
 from PIL import Image as Image_k
 from PIL import ImageTk
-from tkinter.simpledialog import *
 import CallAPI
 import random
 
+IMG_DIR = os.path.dirname(os.path.abspath(__file__))
+
 def show_image():
-    window = Tk()
-    window.title("미세먼지 측정기")
-    window.geometry("700x500")
+    try:
+        if 'window' in globals() and isinstance(window, Tk):
+            pass
+        else:
+            window = Tk()
+            window.title("미세먼지 측정기")
+            window.geometry("700x500")
 
-    
-    img_path_good = ["C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_03.jpg",
-                "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_06.jpg",
-                "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_13.jpg",
-                "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_15.jpg",
-                "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_17.jpg",
-                "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_20.jpg",
-                ]
-    img_path_soso = ["C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_02.jpg",
-                     "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_08.jpg",
-                     "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_11.jpg",
-                     "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_18.jpg",
-                     ]
-    img_path_bad = ["C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_01.jpg",
-                    "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_04.jpg",
-                    "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_07.jpg",
-                    "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_09.jpg",
-                    "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_16.jpg",]
-    img_path_too_bad = ["C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_05.jpg",
-                        "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_10.jpg",
-                        "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_12.jpg",
-                        "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_14.jpg",
-                        "C:\\Users\\sinmi\\OneDrive\\바탕 화면\\파이썬 teamproject\\images\\KakaoTalk_20250525_094734829_19.jpg",]
-    selected_img_path1 = random.choice(img_path_good)
-    selected_img_path2 = random.choice(img_path_soso)
-    selected_img_path3 = random.choice(img_path_bad)
-    selected_img_path4 = random.choice(img_path_too_bad)
-    
-    image1 = Image_k.open(selected_img_path1)    
-    image2 = Image_k.open(selected_img_path2)
-    image3 = Image_k.open(selected_img_path3)
-    image4 = Image_k.open(selected_img_path4)
+        img_path_good = [os.path.join(IMG_DIR,"images" ,fname) for fname in [
+            "KakaoTalk_20250525_094734829_03.jpg",
+            "KakaoTalk_20250525_094734829_06.jpg",
+            "KakaoTalk_20250525_094734829_13.jpg",
+            "KakaoTalk_20250525_094734829_15.jpg",
+            "KakaoTalk_20250525_094734829_17.jpg",
+            "KakaoTalk_20250525_094734829_20.jpg",
+        ]]
 
-    
-    
+        img_path_soso = [os.path.join(IMG_DIR,"images", fname) for fname in [
+            "KakaoTalk_20250525_094734829_02.jpg",
+            "KakaoTalk_20250525_094734829_08.jpg",
+            "KakaoTalk_20250525_094734829_11.jpg",
+            "KakaoTalk_20250525_094734829_18.jpg",
+        ]]
 
-    desired_width = 500
-    desired_height = 300
-    if CallAPI.c == 1:  
-        try:
-            resample_filter = Image_k.Resampling.LANCZOS
-        except AttributeError:
-            resample_filter = Image_k.LANCZOS 
-        resized_image = image1.resize((desired_width, desired_height), resample_filter)
-        
-        label2 = Label(window, text="오늘의 미세먼지는 좋음입니다")
-        label2.pack(side="top", pady=20)
-        photo = ImageTk.PhotoImage(resized_image)
+        img_path_bad = [os.path.join(IMG_DIR,"images", fname) for fname in [
+            "KakaoTalk_20250525_094734829_01.jpg",
+            "KakaoTalk_20250525_094734829_04.jpg",
+            "KakaoTalk_20250525_094734829_07.jpg",
+            "KakaoTalk_20250525_094734829_09.jpg",
+            "KakaoTalk_20250525_094734829_16.jpg",
+        ]]
 
+        img_path_too_bad = [os.path.join(IMG_DIR,"images", fname) for fname in [
+            "KakaoTalk_20250525_094734829_05.jpg",
+            "KakaoTalk_20250525_094734829_10.jpg",
+            "KakaoTalk_20250525_094734829_12.jpg",
+            "KakaoTalk_20250525_094734829_14.jpg",
+            "KakaoTalk_20250525_094734829_19.jpg",
+        ]]
 
+        selected_img_path1 = random.choice(img_path_good)
+        selected_img_path2 = random.choice(img_path_soso)
+        selected_img_path3 = random.choice(img_path_bad)
+        selected_img_path4 = random.choice(img_path_too_bad)
 
+        desired_width = 500
+        desired_height = 300
 
-        label1 = Label(window, image=photo)
-        label1.pack(side= "bottom",pady=20)
-        window.mainloop()
-    elif CallAPI.c == 2:
+        if CallAPI.c == 1:
+            image_path = selected_img_path1
+            label_text = "오늘의 미세먼지는 좋음입니다"
+        elif CallAPI.c == 2:
+            image_path = selected_img_path2
+            label_text = "오늘의 미세먼지는 보통입니다"
+        elif CallAPI.c == 3:
+            image_path = selected_img_path3
+            label_text = "오늘의 미세먼지는 나쁨입니다"
+        elif CallAPI.c == 4:
+            image_path = selected_img_path4
+            label_text = "오늘의 미세먼지는 매우나쁨입니다"
+        else:
+            label_text = "미세먼지 상태를 알 수 없습니다."
+            image_path = None
 
-        try:
-            resample_filter = Image_k.Resampling.LANCZOS
-        except AttributeError:
-            resample_filter = Image_k.LANCZOS 
-        resized_image = image2.resize((desired_width, desired_height), resample_filter)
-        
-        label2 = Label(window, text="오늘의 미세먼지는 보통입니다")
-        label2.pack(side="top", pady=20)
-        photo = ImageTk.PhotoImage(resized_image)
+        if image_path:
+            if not os.path.exists(image_path):
+                print(f"[Error] 이미지 파일이 없습니다: {image_path}")
+                image_path = None
 
+        if image_path:
+            image = Image_k.open(image_path)
+            try:
+                resample_filter = Image_k.Resampling.LANCZOS
+            except AttributeError:
+                resample_filter = Image_k.LANCZOS
 
+            resized_image = image.resize((desired_width, desired_height), resample_filter)
+            photo = ImageTk.PhotoImage(resized_image)
 
+            label_img = Label(window, image=photo)
+            label_img.image = photo  # 참조 유지 필수
+            label_img.pack(side="bottom", pady=20)
 
-        label1 = Label(window, image=photo)
-        label1.pack(side= "bottom",pady=20)
-        window.mainloop()
-    elif CallAPI.c == 3:
-        try:
-            resample_filter = Image_k.Resampling.LANCZOS
-        except AttributeError:
-            resample_filter = Image_k.LANCZOS 
-        resized_image = image3.resize((desired_width, desired_height), resample_filter)
-        
-        label2 = Label(window, text="오늘의 미세먼지는 나쁨입니다")
-        label2.pack(side="top", pady=20)
-        photo = ImageTk.PhotoImage(resized_image)
+        label_text_label = Label(window, text=label_text)
+        label_text_label.pack(side="top", pady=20)
 
+        # mainloop는 중복 호출 막기 위해 전역 변수로 상태 확인 가능
+        if not hasattr(show_image, "loop_started"):
+            show_image.loop_started = True
+            window.mainloop()
 
-
-
-        label1 = Label(window, image=photo)
-        label1.pack(side= "bottom",pady=20)
-        window.mainloop()
-    elif CallAPI.c == 4:
-        try:
-            resample_filter = Image_k.Resampling.LANCZOS
-        except AttributeError:
-            resample_filter = Image_k.LANCZOS 
-        resized_image = image4.resize((desired_width, desired_height), resample_filter)
-        
-        label2 = Label(window, text="오늘의 미세먼지는 매우나쁨입니다")
-        label2.pack(side="top", pady=20)
-        photo = ImageTk.PhotoImage(resized_image)
-
-
-
-
-        label1 = Label(window, image=photo)
-        label1.pack(side= "bottom",pady=20)
-        window.mainloop()
+    except Exception as e:
+        print(f"[show_image 함수 오류]: {e}")
